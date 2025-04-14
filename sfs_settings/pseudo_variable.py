@@ -7,7 +7,7 @@ from typing import Any
 
 from pydantic import validate_call
 
-from sfs_settings._internal._funcs import obtain_convert_and_validate
+from sfs_settings.utility_functions import obtain_convert_and_validate
 
 
 class PseudoVariable:
@@ -25,6 +25,7 @@ class PseudoVariable:
         conversion_function: Callable[[str], Any] | type,
         validator_function: Callable[[Any], bool],
     ) -> None:
+        """Initialize the pseudo variable."""
         self.obtaining_function = obtaining_function
         self.conversion_function = conversion_function
         self.validator_function = validator_function
@@ -37,17 +38,18 @@ class PseudoVariable:
             is_valid_function=self.validator_function,
         )
 
-    # Make it work for equality checks (api_key == "secret_value")
     def __eq__(self, other: object) -> bool:
+        """Make it work for equality checks (api_key == "secret_value")."""
         return self._get_value() == other
 
-    # Make it work in string contexts (str(api_key) or print(api_key))
     def __str__(self) -> str:
+        """Make it work in string contexts (str(api_key) or print(api_key))."""
         return str(self._get_value())
 
     def __repr__(self) -> str:
+        """Make it work in repr contexts (repr(api_key))."""
         return repr(self._get_value())
 
-    # You can also make it callable if wanted (api_key())
     def __call__(self) -> Any:
+        """Make it callable if wanted (api_key())."""
         return self._get_value()

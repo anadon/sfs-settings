@@ -11,12 +11,12 @@ from unittest.mock import patch
 import pytest
 
 import sfs_settings as sfs
-from sfs_settings import (
-    SettingsNotFoundError,
+from sfs_settings.core_functions import (
     return_env_var,
     set_env_var_locally,
     track_env_var,
 )
+from sfs_settings.exceptions import SettingsNotFoundError
 
 
 class TestEnvironmentVariables:
