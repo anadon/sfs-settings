@@ -1,6 +1,6 @@
 # ruff: noqa: D400,D415,D417
 """
-Python Settings: Simplified Environment and Secret Management
+SFS Settings: Simple, Flexible, and Secure Settings Management
 =============================================================
 
 This module provides a flexible, secure way to manage application settings from
