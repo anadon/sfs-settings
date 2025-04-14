@@ -1,0 +1,13 @@
+.benchmarks/
+.nox/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+docs/build/
+htmlcov/
+.DS_Store
+.coverage
+.hypothesis/
+__pycache__/
+.direnv/
