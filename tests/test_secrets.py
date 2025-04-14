@@ -118,7 +118,7 @@ def test_secret_rotation() -> None:
         old_key = ROTATING_KEY()  # type: ignore[name-defined, attr-defined]
     assert old_key == "old_secret"
 
-    with patch("keyring.set_password", return_value="new_secret"):
+    with patch("keyring.get_password", return_value="new_secret"):
         new_key = ROTATING_KEY()  # type: ignore[name-defined, attr-defined]
     assert old_key == "old_secret"
     assert new_key == "new_secret"
