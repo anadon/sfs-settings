@@ -10,8 +10,8 @@ from unittest.mock import patch
 
 import pytest
 
-import python_settings as ps
-from python_settings import (
+import sfs_settings as sfs
+from sfs_settings import (
     SettingsNotFoundError,
     return_env_var,
     set_env_var_locally,
@@ -28,7 +28,7 @@ class TestEnvironmentVariables:
             set_env_var_locally("NUMBER", conversion_function=int)
 
     def test_validation_chain(self) -> None:
-        """Test multiple validation steps."""
+        """Test multiple validation stesfs."""
         global VALID_VAR, INVALID_VAR
 
         def validate_length(x: str) -> bool:
@@ -109,12 +109,12 @@ def test_env_get_lazy_local() -> None:
 
 @patch("os.environ.get", fake)
 def test_env_get_lazy_tracked() -> None:
-    """Test environment variable retrieval for lazy retrieval from python_settings."""
+    """Test environment variable retrieval for lazy retrieval from sfs_settings."""
     global TEMP_KEY, RAND_VAL
     track_env_var("TEMP_KEY")
     assert (
-        ps.TEMP_KEY == RAND_VAL  # type: ignore[name-defined, attr-defined]
-    ), f"TEMP_KEY is not set to {RAND_VAL}, but is set to {ps.TEMP_KEY!s}"  # type: ignore[name-defined, attr-defined]
+        sfs.TEMP_KEY == RAND_VAL  # type: ignore[name-defined, attr-defined]
+    ), f"TEMP_KEY is not set to {RAND_VAL}, but is set to {sfs.TEMP_KEY!s}"  # type: ignore[name-defined, attr-defined]
 
 
 @patch("os.environ.get", fake)

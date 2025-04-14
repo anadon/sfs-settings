@@ -4,7 +4,7 @@ Security Considerations
 Secret Management
 -----------------
 
-Python-settings uses the `keyring` library to securely store and retrieve secrets. This provides several advantages:
+sfs-settings uses the `keyring` library to securely store and retrieve secrets. This provides several advantages:
 
 1. Secrets are not stored in plain text
 2. System-specific secure storage is used (Keychain on macOS, Secret Service on Linux, Credential Manager on Windows)

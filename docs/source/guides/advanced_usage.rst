@@ -1,7 +1,7 @@
 Advanced Usage
 ==============
 
-This guide covers advanced techniques for using python-settings in complex scenarios.
+This guide covers advanced techniques for using sfs-settings in complex scenarios.
 
 Type Conversion and Validation
 ------------------------------
@@ -97,7 +97,7 @@ For larger applications, you might use multiple patterns:
 .. code-block:: python
 
     # config.py
-    from python_settings import (
+    from sfs_settings import (
         set_env_var_locally,
         return_env_var,
         return_secret_var
@@ -127,12 +127,12 @@ For larger applications, you might use multiple patterns:
 Working with Pydantic
 ~~~~~~~~~~~~~~~~~~~~~
 
-Integrate python-settings with Pydantic models:
+Integrate sfs-settings with Pydantic models:
 
 .. code-block:: python
 
     from pydantic import BaseModel, Field
-    from python_settings import return_env_var, return_secret_var
+    from sfs_settings import return_env_var, return_secret_var
 
     class DatabaseSettings(BaseModel):
         host: str = Field(default_factory=lambda: return_env_var("DB_HOST", default="localhost"))
@@ -165,7 +165,7 @@ Custom error handling for configuration issues:
 
 .. code-block:: python
 
-    from python_settings import SettingsValidationError, SettingsNotFoundError
+    from sfs_settings import SettingsValidationError, SettingsNotFoundError
     import sys
 
     try:

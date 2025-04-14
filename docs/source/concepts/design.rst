@@ -12,14 +12,14 @@ However, these approaches often require boilerplate code or lack important featu
 * Secret management
 * Development vs. production configuration
 
-Python-settings aims to provide a unified interface for all these concerns with minimal code.
+sfs-settings aims to provide a unified interface for all these concerns with minimal code.
 
 Three Core Patterns
 -------------------
 
-Python-settings offers three distinct patterns for different use cases:
+sfs-settings offers three distinct patterns for different use cases:
 
-1. **Module pattern**: Setting variables in the python_settings module itself
+1. **Module pattern**: Setting variables in the sfs_settings module itself
    * Simplest approach
    * Good for applications with a centralized settings approach
    * Not suitable for libraries or multiple data sources
@@ -37,7 +37,7 @@ Python-settings offers three distinct patterns for different use cases:
 Under the Hood
 --------------
 
-Internally, python-settings uses stack introspection to determine the calling module and modify its namespace. This is how variables can "magically" appear in your module.
+Internally, sfs-settings uses stack introspection to determine the calling module and modify its namespace. This is how variables can "magically" appear in your module.
 
 Each setting can be configured to be:
 

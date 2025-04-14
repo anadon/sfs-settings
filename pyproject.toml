@@ -1,9 +1,20 @@
 [tool.poetry]
-name = "python-settings"
-version = "0.1.0"
-description = ""
+name = "sfs-settings"
+version = "0.9.0"
+description = "Simple, flexible, and secure settings management for Python."
 authors = ["Anadon <joshua.r.marshall.1991@gmail.com>"]
 readme = "README.rst"
+license = "CC"
+repository = "https://github.com/anadon/sfs-settings"
+keywords = ["settings", "configuration", "environment", "secrets"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -55,5 +66,5 @@ lint.extend-select = ["ANN", "S", "DTZ"]
 lint.select = ["ALL", "D210"]
 lint.ignore = ["D203", "D212", "COM812", "ISC001", "EM102", "TRY003", "D404", "D205", "FBT002", "FBT001", "TRY002", "TRY301", "PLR0913", "TC003", "ANN401", "N807", "EM101"]
 # Sort imports
-lint.isort = { known-first-party = ["python_settings"], required-imports = ["from __future__ import annotations"] }
+lint.isort = { known-first-party = ["sfs_settings"], required-imports = ["from __future__ import annotations"] }
 lint.per-file-ignores = { "tests/*" = ["S101", "S105", "F821"] }  # Allow assertions, hardcoded passwords, and dynamic variables in tests

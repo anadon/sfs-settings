@@ -8,8 +8,8 @@ from unittest.mock import patch
 
 import pytest
 
-import python_settings as ps
-from python_settings import (
+import sfs_settings as sfs
+from sfs_settings import (
     SettingsValidationError,
     return_secret_var,
     set_secret_var_locally,
@@ -49,8 +49,8 @@ def test_secret_get_lazy_tracked() -> None:
     track_secret_var("TEMP_KEY", STORE_NAME, KEY_NAME)
 
     assert (
-        SECRET.__str__() == ps.TEMP_KEY.__str__()  # type: ignore[name-defined, attr-defined]
-    ), f"TEMP_KEY is not set to the secret value, but is set to {ps.TEMP_KEY!s}"  # type: ignore[name-defined, attr-defined]
+        SECRET.__str__() == sfs.TEMP_KEY.__str__()  # type: ignore[name-defined, attr-defined]
+    ), f"TEMP_KEY is not set to the secret value, but is set to {sfs.TEMP_KEY!s}"  # type: ignore[name-defined, attr-defined]
 
 
 @patch("keyring.get_password", fake)
@@ -85,8 +85,8 @@ def test_secret_get_immediate_tracked() -> None:
     track_secret_var("TEMP_KEY", STORE_NAME, KEY_NAME, reobtain_each_usage=False)
 
     assert (
-        SECRET == ps.TEMP_KEY  # type: ignore[name-defined, attr-defined]
-    ), f"TEMP_KEY is not set to the secret value, but is set to {ps.TEMP_KEY!s}"  # type: ignore[name-defined, attr-defined]
+        SECRET == sfs.TEMP_KEY  # type: ignore[name-defined, attr-defined]
+    ), f"TEMP_KEY is not set to the secret value, but is set to {sfs.TEMP_KEY!s}"  # type: ignore[name-defined, attr-defined]
 
 
 @patch("keyring.get_password", fake)

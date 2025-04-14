@@ -6,7 +6,7 @@ Python Settings: Simplified Environment and Secret Management
 This module provides a flexible, secure way to manage application settings from
 environment variables and secret stores. It offers three distinct patterns:
 
-1. Setting variables directly in the python_settings module
+1. Setting variables directly in the sfs_settings module
 2. Setting variables in the calling module namespace
 3. Returning values for manual assignment
 
@@ -20,19 +20,19 @@ Key Features:
 
 Basic Examples:
 ---------------
-Set and get in python-settings itself:
+Set and get in sfs-settings itself:
 
 .. code-block:: python
 
-    import python_settings as ps
-    ps.track_env_var("DATABASE_URL")
-    print(ps.DATABASE_URL)  # Uses the value from DATABASE_URL environment variable
+    import sfs_settings as sfs
+    sfs.track_env_var("DATABASE_URL")
+    print(sfs.DATABASE_URL)  # Uses the value from DATABASE_URL environment variable
 
 Set and get in the calling module:
 
 .. code-block:: python
 
-    from python_settings import set_env_var_locally
+    from sfs_settings import set_env_var_locally
     set_env_var_locally("DATABASE_URL")
     print(DATABASE_URL)  # Variable is now available in the local namespace
 
@@ -40,29 +40,27 @@ Use values directly:
 
 .. code-block:: python
 
-    from python_settings import return_env_var
+    from sfs_settings import return_env_var
     db_url = return_env_var("DATABASE_URL")
     print(db_url)
 """
 
 from __future__ import annotations
 
-import inspect
 from collections.abc import Callable
-from os import environ
-from types import FrameType
 from typing import Any
 
-import keyring
 from dotenv import load_dotenv
 from pydantic import validate_call
 
-from .python_settings_exceptions import SettingsNotFoundError, SettingsValidationError
-
-# This loads values from a .env file into the os.environ
-load_dotenv()
-
-DEBUG_PYTHON_SETTINGS = False
+from ._internal.funcs import (
+    generate_obtain_env_val_function,
+    generate_obtain_secret_function,
+    returnable_value,
+    set_var_in_calling_module,
+    set_var_in_sfs_settings,
+)
+from ._internal.sfs_settings_exceptions import SettingsNotFoundError, SettingsValidationError
 
 __all__ = [
     "SettingsNotFoundError",
@@ -75,175 +73,12 @@ __all__ = [
     "track_secret_var",
 ]
 
+__version__ = "0.9.0"
 
-@validate_call
-def __obtain_convert_and_validate__(
-    *,
-    obtaining_function: Callable[[], str],
-    conversion_function: Callable[[str], Any] | type,
-    is_valid_function: Callable[[Any], bool] = lambda _: True,
-) -> Any:
-    value = obtaining_function()
-    converted_value = conversion_function(value) if value is not None else None
-    if not is_valid_function(converted_value):
-        raise SettingsValidationError
-    return converted_value
+# This loads values from a .env file into the os.environ
+load_dotenv()
 
-
-class __PseudoVariable__:  # noqa: N801
-    __slots__ = ("conversion_function", "obtaining_function", "validator_function")
-
-    @validate_call
-    def __init__(
-        self,
-        obtaining_function: Callable[[], str],
-        conversion_function: Callable[[str], Any] | type,
-        validator_function: Callable[[Any], bool],
-    ) -> None:
-        self.obtaining_function = obtaining_function
-        self.conversion_function = conversion_function
-        self.validator_function = validator_function
-
-    def _get_value(self) -> Any:
-        """Get the actual value."""
-        return __obtain_convert_and_validate__(
-            obtaining_function=self.obtaining_function,
-            conversion_function=self.conversion_function,
-            is_valid_function=self.validator_function,
-        )
-
-    # Make it work for equality checks (api_key == "secret_value")
-    def __eq__(self, other: object) -> bool:
-        return self._get_value() == other
-
-    # Make it work in string contexts (str(api_key) or print(api_key))
-    def __str__(self) -> str:
-        return str(self._get_value())
-
-    def __repr__(self) -> str:
-        return repr(self._get_value())
-
-    # You can also make it callable if wanted (api_key())
-    def __call__(self) -> Any:
-        return self._get_value()
-
-
-def __get_calling_module__() -> FrameType:
-    for frame in inspect.stack():
-        if (
-            not (set(frame.filename.split("/")) | {"python_settings", "pydantic"})
-            or "/python-settings/tests/" in frame.filename
-        ):
-            return frame.frame
-    raise ValueError("Could not find calling module")  # pragma: no cover
-
-
-def __get_this_module__() -> FrameType:
-    return inspect.stack()[0].frame
-
-
-@validate_call
-def __returnable_value__(
-    *,
-    obtaining_function: Callable[[], str],
-    conversion_function: Callable[[str], Any] | type,
-    validator_function: Callable[[Any], bool],
-    reobtain_each_usage: bool,
-) -> Any:
-    return (
-        __PseudoVariable__(
-            obtaining_function=obtaining_function,
-            conversion_function=conversion_function,
-            validator_function=validator_function,
-        )
-        if reobtain_each_usage
-        else __obtain_convert_and_validate__(
-            obtaining_function=obtaining_function,
-            conversion_function=conversion_function,
-            is_valid_function=validator_function,
-        )
-    )
-
-
-def __set_in_module__(
-    *,
-    name: str,
-    obtaining_function: Callable[[], str],
-    conversion_function: Callable[[str], Any] | type,
-    validator_function: Callable[[Any], bool],
-    reobtain_each_usage: bool,
-    module_ref: FrameType,
-) -> None:
-    module_ref.f_globals[name] = __returnable_value__(
-        obtaining_function=obtaining_function,
-        conversion_function=conversion_function,
-        validator_function=validator_function,
-        reobtain_each_usage=reobtain_each_usage,
-    )
-
-
-@validate_call
-def __generate_obtain_secret_function__(
-    store_name: str,
-    name_in_store: str,
-    default: str | None = None,
-) -> Callable[[], str]:
-    @validate_call
-    def obtain_secret() -> str:
-        return keyring.get_password(store_name, name_in_store) or default  # type: ignore  # noqa: PGH003
-
-    return obtain_secret
-
-
-@validate_call
-def __generate_obtain_env_val_function__(
-    name: str,
-    default: str | None = None,
-) -> Callable[[], str]:
-    @validate_call
-    def obtaining_function() -> str:
-        val = environ.get(name, default)
-        if val is None:
-            raise SettingsNotFoundError(f"Environment variable {name} is required but not set.")
-        return val
-
-    return obtaining_function
-
-
-@validate_call
-def __set_var_in_calling_module__(
-    name: str,
-    obtaining_function: Callable[[], str],
-    conversion_function: Callable[[str], Any] | type,
-    validator_function: Callable[[Any], bool],
-    reobtain_each_usage: bool,
-) -> None:
-    __set_in_module__(
-        name=name,
-        obtaining_function=obtaining_function,
-        validator_function=validator_function,
-        reobtain_each_usage=reobtain_each_usage,
-        conversion_function=conversion_function,
-        module_ref=__get_calling_module__(),
-    )
-
-
-@validate_call
-def __set_var_in_python_settings__(
-    name: str,
-    obtaining_function: Callable[[], str],
-    conversion_function: Callable[[str], Any] | type,
-    validator_function: Callable[[Any], bool],
-    reobtain_each_usage: bool,
-) -> None:
-    __set_in_module__(
-        name=name,
-        obtaining_function=obtaining_function,
-        validator_function=validator_function,
-        reobtain_each_usage=reobtain_each_usage,
-        conversion_function=conversion_function,
-        module_ref=__get_this_module__(),
-    )
+DEBUG_sfs_settings = False
 
 
 @validate_call
@@ -277,9 +112,9 @@ def track_env_var(
         This function does not return anything. It sets a variable in the calling module as a side effect.
 
     """
-    __set_var_in_python_settings__(
+    set_var_in_sfs_settings(
         name=env_var_name,
-        obtaining_function=__generate_obtain_env_val_function__(env_var_name, default),
+        obtaining_function=generate_obtain_env_val_function(env_var_name, default),
         validator_function=validator_function,
         reobtain_each_usage=reobtain_each_usage,
         conversion_function=conversion_function,
@@ -348,9 +183,9 @@ def track_secret_var(
         module as a side effect.
 
     """
-    __set_var_in_python_settings__(
+    set_var_in_sfs_settings(
         name=var_name,
-        obtaining_function=__generate_obtain_secret_function__(
+        obtaining_function=generate_obtain_secret_function(
             store_name=store_name,
             name_in_store=name_in_store,
             default=default,
@@ -395,9 +230,9 @@ def set_env_var_locally(
         This function does not return anything. It sets a variable in the calling module as a side effect.
 
     """
-    __set_var_in_calling_module__(
+    set_var_in_calling_module(
         name=name,
-        obtaining_function=__generate_obtain_env_val_function__(name, default),
+        obtaining_function=generate_obtain_env_val_function(name, default),
         validator_function=validator_function,
         reobtain_each_usage=reobtain_each_usage,
         conversion_function=conversion_function,
@@ -466,9 +301,9 @@ def set_secret_var_locally(
         module as a side effect.
 
     """
-    __set_var_in_calling_module__(
+    set_var_in_calling_module(
         name=var_name,
-        obtaining_function=__generate_obtain_secret_function__(
+        obtaining_function=generate_obtain_secret_function(
             store_name=store_name,
             name_in_store=name_in_store,
             default=default,
@@ -511,8 +346,8 @@ def return_env_var(
         The value of the environment variable.
 
     """
-    return __returnable_value__(
-        obtaining_function=__generate_obtain_env_val_function__(env_var_name, default),
+    return returnable_value(
+        obtaining_function=generate_obtain_env_val_function(env_var_name, default),
         conversion_function=conversion_function,
         validator_function=validator_function,
         reobtain_each_usage=reobtain_each_usage,
@@ -576,8 +411,8 @@ def return_secret_var(
         The retrieved secret value after any conversion has been applied.
 
     """
-    return __returnable_value__(
-        obtaining_function=__generate_obtain_secret_function__(
+    return returnable_value(
+        obtaining_function=generate_obtain_secret_function(
             store_name=store_name,
             name_in_store=name_in_store,
             default=default,

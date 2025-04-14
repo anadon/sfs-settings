@@ -17,21 +17,21 @@ Using pip:
 
 .. code-block:: bash
 
-    pip install python-settings
+    pip install sfs-settings
 
 Using Poetry:
 
 .. code-block:: bash
 
-    poetry add python-settings
+    poetry add sfs-settings
 
 From Source
 -----------
 
 .. code-block:: bash
 
-    git clone https://gitlab.com/anadon/python-settings.git
-    cd python-settings
+    git clone https://gitlab.com/anadon/sfs-settings.git
+    cd sfs-settings
     poetry install
 
 Verifying Installation
@@ -41,5 +41,5 @@ You can verify the installation by running a simple Python script:
 
 .. code-block:: python
 
-    import python_settings
-    print(python_settings.__version__)
+    import sfs_settings
+    print(sfs_settings.__version__)

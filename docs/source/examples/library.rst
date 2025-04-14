@@ -1,7 +1,7 @@
-Using python-settings with Libraries
+Using sfs-settings with Libraries
 ====================================
 
-This example shows how to use python-settings when creating a reusable Python library.
+This example shows how to use sfs-settings when creating a reusable Python library.
 
 Library Design Considerations
 -----------------------------
@@ -22,7 +22,7 @@ modify the module namespace:
 .. code-block:: python
 
     # my_library/config.py
-    from python_settings import return_env_var, return_secret_var
+    from sfs_settings import return_env_var, return_secret_var
 
     # Configuration with defaults suitable for library use
     API_TIMEOUT = return_env_var("MY_LIB_API_TIMEOUT", default="30", conversion_function=int)
@@ -32,7 +32,7 @@ modify the module namespace:
 Complete Example
 ----------------
 
-Here's a complete example of a library that uses python-settings:
+Here's a complete example of a library that uses sfs-settings:
 
 Project Structure
 ~~~~~~~~~~~~~~~~~
@@ -50,7 +50,7 @@ Configuration Module
 .. code-block:: python
     :caption: my_library/config.py
 
-    from python_settings import return_env_var, return_secret_var
+    from sfs_settings import return_env_var, return_secret_var
 
     # Public configuration with reasonable defaults
     DEBUG = return_env_var("MY_LIB_DEBUG", default="false",

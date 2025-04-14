@@ -1,9 +1,9 @@
-Welcome to python-settings, the last settings module you'll ever need!
+Welcome to sfs-settings, the last settings module you'll ever need!
 ======================================================================
 
 Three ways to use your settings, guaranteed to work the way you've always *just* wanted!
 
-* Simply set and get in python-settings itself
+* Simply set and get in sfs-settings itself
 * Simply set and get in the calling module
 * Simply use it for your own settings pattern
 
@@ -19,18 +19,18 @@ Requirements
 How to use
 ----------
 
-Set and get in python-settings itself
+Set and get in sfs-settings itself
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
-    import python_settings as ps
+    import sfs_settings as sfs
 
-    ps.track_env_var("URL", str)
-    ps.track_secret_var("API_KEY", str)
+    sfs.track_env_var("URL", str)
+    sfs.track_secret_var("API_KEY", str)
 
-    print(ps.URL)
-    print(ps.API_KEY)
+    print(sfs.URL)
+    print(sfs.API_KEY)
 
 **Do use this if**:
 
@@ -46,7 +46,7 @@ Set and get in the calling module
 
 .. code-block:: python
 
-    from python_settings import set_env_var_locally, set_secret_var_locally
+    from sfs_settings import set_env_var_locally, set_secret_var_locally
 
     set_env_var_locally("URL", str)
     set_secret_var_locally("API_KEY", str)
@@ -68,7 +68,7 @@ Use it for your own settings pattern
 
 .. code-block:: python
 
-    from python_settings import return_env_var, return_secret_var
+    from sfs_settings import return_env_var, return_secret_var
 
     URL: str = return_env_var("URL", str)
     API_KEY: str = return_secret_var("API_KEY", str)
@@ -89,31 +89,31 @@ Use it for your own settings pattern
 ``.env`` support
 ~~~~~~~~~~~~~~~~
 
-``python-settings`` supports ``.env`` files!  It automatically loads them from the current working directory.  If you need to have easy swapping between development, local, testing, cloud, and other configurations then swapping ``.env`` files is a great way to do it.
+``sfs-settings`` supports ``.env`` files!  It automatically loads them from the current working directory.  If you need to have easy swapping between development, local, testing, cloud, and other configurations then swapping ``.env`` files is a great way to do it.
 
 per-user application settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``python-settings`` does not yet support keeping settings somewhere in ``~/.config/``...  We're working on it.
+``sfs-settings`` does not yet support keeping settings somewhere in ``~/.config/``...  We're working on it.
 
 debugging support?
 ~~~~~~~~~~~~~~~~~~
 
-It's kinda complicated inside ``python-settings`` actually.  So when if you're using a more complicated setup and things seem a little too magical?  It isn't implemented yet, but it is on the roadmap to add a ``DEBUG`` mode.
+It's kinda complicated inside ``sfs-settings`` actually.  So when if you're using a more complicated setup and things seem a little too magical?  It isn't implemented yet, but it is on the roadmap to add a ``DEBUG`` mode.
 
 No downtime to atomically change settings?  Transaction locks incoming!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-While not here yet, ``python-settings`` **will** support transation locks so that you don't need to stop your container or VM in order to guarantee correct settings at all times.  So, how do you feel about sub-millisecond not even downtime, but pauses?  We think that they're just swell!
+While not here yet, ``sfs-settings`` **will** support transation locks so that you don't need to stop your container or VM in order to guarantee correct settings at all times.  So, how do you feel about sub-millisecond not even downtime, but pauses?  We think that they're just swell!
 
 When it lands, you'll be able to do something like this:
 
 .. code-block:: bash
 
-    export PYTHON_SETTINGS_TRANSACTION_LOCK="*"
+    export sfs_settings_TRANSACTION_LOCK="*"
     export MY_SETTING_ONE="Hello"
     export MY_SETTING_TWO="World"
-    unset PYTHON_SETTINGS_TRANSACTION_LOCK
+    unset sfs_settings_TRANSACTION_LOCK
 
 Just remember that these will **ONLY** work for settings which have ``reobtain_each_usage=True``!
 

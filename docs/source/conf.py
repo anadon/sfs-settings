@@ -8,7 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path("../..").absolute().as_posix()))
 
 # -- Project information -----------------------------------------------------
-project = "python-settings"
+project = "sfs-settings"
 copyright = "2025, Josh Marshall"  # noqa: A001
 author = "Josh Marshall"
 

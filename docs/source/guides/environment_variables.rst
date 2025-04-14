@@ -1,16 +1,16 @@
 Working with Environment Variables
 ==================================
 
-This guide explains how to work with environment variables in python-settings.
+This guide explains how to work with environment variables in sfs-settings.
 
 Basic Usage
 -----------
 
-Environment variables are a common way to configure applications. Python-settings makes them easy to use:
+Environment variables are a common way to configure applications. sfs-settings makes them easy to use:
 
 .. code-block:: python
 
-    from python_settings import set_env_var_locally
+    from sfs_settings import set_env_var_locally
 
     # Set DATABASE_URL from environment variable
     set_env_var_locally("DATABASE_URL")
@@ -37,7 +37,7 @@ Environment variables are always strings, but you can convert them to the right 
 Working with .env Files
 -----------------------
 
-Python-settings automatically loads variables from .env files in the current directory:
+sfs-settings automatically loads variables from .env files in the current directory:
 
 .. code-block:: bash
     :caption: .env file
@@ -68,7 +68,7 @@ Loading specific environments:
     import os
     from dotenv import load_dotenv
 
-    # Before importing python_settings
+    # Before importing sfs_settings
     load_dotenv(f".env.{os.environ.get('ENVIRONMENT', 'development')}")
 
-    from python_settings import set_env_var_locally
+    from sfs_settings import set_env_var_locally

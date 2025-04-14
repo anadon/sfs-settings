@@ -1,4 +1,4 @@
-"""Exceptions for python_settings."""
+"""Exceptions for sfs_settings."""
 
 from __future__ import annotations
 

@@ -39,7 +39,7 @@ def mypy(session: nox.Session) -> None:
     """Run the static type checker."""
     session.run("poetry", "env", "use", session.python, external=True)
     session.run("poetry", "install", external=True)
-    session.run("mypy", "python_settings")
+    session.run("mypy", "sfs_settings")
 
 
 @nox.session(python=versions[-1])
@@ -50,11 +50,11 @@ def lint(session: nox.Session) -> None:
 
     # For NixOS, we need to use Python module directly instead of the binary
     if is_nixos:
-        session.run("python", "-m", "ruff", "check", "python_settings")
-        session.run("python", "-m", "ruff", "format", "--check", "python_settings")
+        session.run("python", "-m", "ruff", "check", "sfs_settings")
+        session.run("python", "-m", "ruff", "format", "--check", "sfs_settings")
     else:
-        session.run("ruff", "check", "python_settings")
-        session.run("ruff", "format", "--check", "python_settings")
+        session.run("ruff", "check", "sfs_settings")
+        session.run("ruff", "format", "--check", "sfs_settings")
 
 
 @nox.session(python=versions[-1])
@@ -63,7 +63,7 @@ def security(session: nox.Session) -> None:
     session.run("poetry", "env", "use", session.python, external=True)
     session.run("poetry", "install", external=True)
     # For comprehensive security checks beyond what ruff offers
-    session.run("bandit", "-r", "python_settings")
+    session.run("bandit", "-r", "sfs_settings")
 
 
 @nox.session(python=versions[-1])
@@ -73,7 +73,7 @@ def coverage(session: nox.Session) -> None:
     session.run("poetry", "install", external=True)
     session.run(
         "pytest",
-        "--cov=python_settings",
+        "--cov=sfs_settings",
         "--cov-report=term-missing",
         "--cov-report=html",
         "--cov-branch",
@@ -87,7 +87,7 @@ def deduplicate_tests(session: nox.Session) -> None:
     session.run("poetry", "install", external=True)
     session.run(
         "pytest_deduplicate",
-        "--cov=python_settings",
+        "--cov=sfs_settings",
         "--cov-report=term-missing",
         "--cov-branch",
     )

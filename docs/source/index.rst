@@ -1,4 +1,4 @@
-Welcome to python-settings
+Welcome to sfs-settings
 ==========================
 
 .. toctree::

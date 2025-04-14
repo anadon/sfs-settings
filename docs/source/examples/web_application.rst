@@ -1,7 +1,7 @@
 Web Application Example
 =======================
 
-This example shows how to use python-settings in a Flask web application.
+This example shows how to use sfs-settings in a Flask web application.
 
 Project Structure
 -----------------
@@ -20,7 +20,7 @@ Configuration Module
 .. code-block:: python
     :caption: config.py
 
-    from python_settings import set_env_var_locally, set_secret_var_locally
+    from sfs_settings import set_env_var_locally, set_secret_var_locally
 
     # Environment variables
     set_env_var_locally("FLASK_ENV", default="development")

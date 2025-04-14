@@ -1,7 +1,7 @@
-Using python-settings with CLI Tools
+Using sfs-settings with CLI Tools
 ====================================
 
-This example shows how to use python-settings in a command-line interface (CLI) tool.
+This example shows how to use sfs-settings in a command-line interface (CLI) tool.
 
 CLI Tool Considerations
 -----------------------
@@ -19,7 +19,7 @@ For CLI tools, the **local pattern** is recommended for simplicity and readabili
 
 .. code-block:: python
 
-    from python_settings import set_env_var_locally, set_secret_var_locally
+    from sfs_settings import set_env_var_locally, set_secret_var_locally
 
     # Settings are available directly in the module namespace
     set_env_var_locally("OUTPUT_FORMAT", default="json")
@@ -32,7 +32,7 @@ For CLI tools, the **local pattern** is recommended for simplicity and readabili
 Complete Example
 ----------------
 
-Here's a complete example of a CLI tool that uses python-settings:
+Here's a complete example of a CLI tool that uses sfs-settings:
 
 Project Structure
 ~~~~~~~~~~~~~~~~~
@@ -54,7 +54,7 @@ Configuration Module
 .. code-block:: python
     :caption: cli_tool/config.py
 
-    from python_settings import set_env_var_locally, set_secret_var_locally
+    from sfs_settings import set_env_var_locally, set_secret_var_locally
 
     # Basic configuration
     set_env_var_locally("DEBUG", default="false",

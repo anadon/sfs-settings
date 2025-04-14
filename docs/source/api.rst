@@ -1,7 +1,7 @@
 API Reference
 =============
 
-.. automodule:: python_settings
+.. automodule:: sfs_settings
    :members:
    :undoc-members:
    :show-inheritance:

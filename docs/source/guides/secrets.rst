@@ -1,14 +1,14 @@
 Working with Secrets
 ====================
 
-This guide explains how to work with secrets in python-settings.
+This guide explains how to work with secrets in sfs-settings.
 
 Basic Usage
 -----------
 
 .. code-block:: python
 
-    from python_settings import set_secret_var_locally
+    from sfs_settings import set_secret_var_locally
 
     set_secret_var_locally("API_KEY", "MyApp", "api_key")
 
