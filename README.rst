@@ -1,6 +1,14 @@
 Welcome to sfs-settings, the last settings module you'll ever need!
 ======================================================================
 
+.. image:: https://codecov.io/gh/anadon/sfs-settings/graph/badge.svg?token=IV01K5MBAE
+   :target: https://codecov.io/gh/anadon/sfs-settings
+   :alt: Codecov
+
+.. image:: https://www.bestpractices.dev/projects/10423/badge
+   :target: https://www.bestpractices.dev/projects/10423
+
+
 Three ways to use your settings, guaranteed to work the way you've always *just* wanted!
 
 * Simply set and get in sfs-settings itself
