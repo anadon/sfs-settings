@@ -1,5 +1,5 @@
 codecov:
-  token: "IV01K5MBAE"
+  token: "${CODECOV_TOKEN}"
   bot: "codecov-io"
   require_ci_to_pass: yes
   notify:
