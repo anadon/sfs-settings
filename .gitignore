@@ -11,3 +11,4 @@ htmlcov/
 .hypothesis/
 __pycache__/
 .direnv/
+dist/

@@ -15,6 +15,8 @@ Three ways to use your settings, guaranteed to work the way you've always *just*
 * Simply set and get in the calling module
 * Simply use it for your own settings pattern
 
+Full documentation is available `here <https://sfs-settings.readthedocs.io/>`_.
+
 Requirements
 ------------
 
@@ -132,7 +134,7 @@ Build
 
 .. code-block:: bash
 
-    poetry install
+    poetry build
 
 Test
 ----
@@ -144,8 +146,6 @@ Test
 Build Documentation
 -------------------
 
-*TBD*
-
 .. code-block:: bash
 
     poetry run sphinx-build -b html docs/source docs/build/html
@@ -153,7 +153,13 @@ Build Documentation
 License
 -------
 
-`CC <LICENSE>`_
+`MIT <LICENSE>`
 
+Contributing, bug reports, and support
+--------------------------------------
 
-##
+The jist is that you should use the github issue tracker to report bugs and feature requests.  If you're interested in contributing, please see the `CONTRIBUTING.rst` file for more information.
+
+All PRs must be signed and maintain 100% test coverage.
+
+Please see `the Code of Conduct <CODE_OF_CONDUCT.rst>` and `the Contributing requirements <CONTRIBUTING.rst>` for more information.
