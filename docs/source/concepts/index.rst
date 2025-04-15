@@ -1,14 +1,5 @@
-Core Concepts
-=============
-
-.. toctree::
-   :maxdepth: 2
-
-   design
-   security
-
 Design Philosophy
------------------
+=================
 
 sfs-settings was created with the following principles in mind:
 
@@ -18,3 +9,9 @@ sfs-settings was created with the following principles in mind:
 4. **Progressive disclosure**: Simple for basic use cases, powerful for complex ones
 
 This guide explains the core concepts behind sfs-settings and how they work together.
+
+.. toctree::
+   :maxdepth: 2
+
+   design
+   security
