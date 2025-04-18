@@ -33,8 +33,6 @@ Indices and tables
    concepts/security
    concepts/design
 
-* :ref:`genindex`
-
 Requirements
 ------------
 

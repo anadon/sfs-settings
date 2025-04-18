@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-import sys
 from collections.abc import Callable
-from pathlib import Path
 from typing import TYPE_CHECKING, Any, Literal
 
 from sphinx.ext.autodoc import between
@@ -14,8 +12,6 @@ import sfs_settings
 if TYPE_CHECKING:
     from sphinx.application import Sphinx
     from sphinx.ext.autodoc import _AutodocProcessDocstringListener
-
-sys.path.insert(0, str(Path("../..").absolute().as_posix()))
 
 # -- Project information -----------------------------------------------------
 project = "sfs-settings"
@@ -41,6 +37,9 @@ extensions = [
 
 templates_path = ["_templates"]
 exclude_patterns = ["tests"]
+
+# Add this to prevent duplicate warnings
+add_module_names = False
 
 # -- Options for HTML output -------------------------------------------------
 html_theme = "sphinx_rtd_theme"
@@ -106,7 +105,7 @@ python_use_unqualified_type_names = True
 
 # The complex return type causes issue with mypy.
 def setup(  # type: ignore[return]
-    app: Sphinx,
+    app: Sphinx,  # noqa: ARG001
 ) -> _AutodocProcessDocstringListener | None:
     """Create a custom between handler for modules."""
 
@@ -135,15 +134,6 @@ def setup(  # type: ignore[return]
             return between("DOCSTRING_START", "DOCSTRING_END")(app, what, name, obj, options, lines)
         return None
 
-    # Connect the custom handler
-    app.connect("autodoc-process-docstring", between_handler)
-
-    # Special handler for PseudoVariable
-    app.connect("autodoc-process-docstring", process_pseudo_variable)
-
-    # Add this to fix duplicate warnings
-    app.connect("autodoc-process-docstring", deduplicate_docstrings)
-
 
 def process_pseudo_variable(
     app: Sphinx,  # noqa: ARG001
@@ -164,37 +154,6 @@ def process_pseudo_variable(
                 "- `__repr__()` - Repr representation of the value",
             ]
         )
-
-
-def deduplicate_docstrings(
-    app: Sphinx,  # noqa: ARG001
-    what: Literal["module", "class", "exception", "function", "method", "attribute"],  # noqa: ARG001
-    name: str,
-    obj: Any,  # noqa: ARG001
-    options: dict[str, bool],
-    lines: list[str],  # noqa: ARG001
-) -> None:
-    """Add :noindex: option to duplicate objects."""
-    # Handle functions from core_functions
-    if name.startswith("sfs_settings.core_functions.") and hasattr(sfs_settings, name.split(".")[-1]):
-        options["noindex"] = True
-
-    # Handle exceptions
-    if name.startswith("sfs_settings.exceptions.") and hasattr(sfs_settings, name.split(".")[-1]):
-        options["noindex"] = True
-
-    # Handle objects from __init__
-    if name.startswith("sfs_settings.") and "." in name and not name.startswith("sfs_settings._"):
-        base_name = name.split(".")[-1]
-        module_name = ".".join(name.split(".")[:-1])
-
-        # If this is a module-level object that's also exposed at package level
-        if module_name != "sfs_settings" and hasattr(sfs_settings, base_name):
-            options["noindex"] = True
-
-    # Handle autosummary duplicates
-    if "_autosummary" in name:
-        options["noindex"] = True
 
 
 pygments_style = "sphinx"
