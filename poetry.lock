@@ -1424,6 +1424,24 @@ coverage = "*"
 pytest = "*"
 
 [[package]]
+name = "pytest-sphinx"
+version = "0.6.3"
+description = "Doctest plugin for pytest with support for Sphinx-specific doctest-directives"
+optional = false
+python-versions = ">=3.8"
+groups = ["dev"]
+files = [
+    {file = "pytest_sphinx-0.6.3-py3-none-any.whl", hash = "sha256:856e760e64dfbfc89e362e187d641140a267b97881d3ef8aeefb72cc8438ac40"},
+    {file = "pytest_sphinx-0.6.3.tar.gz", hash = "sha256:3b63c8181b9de6a5e5c9826d1b4dc0c827245bec8e64c9f16f269be08be5ecd5"},
+]
+
+[package.dependencies]
+pytest = ">=8.1.1"
+
+[package.extras]
+lint = ["black", "flake8", "isort (>=5)", "mypy"]
+
+[[package]]
 name = "python-dotenv"
 version = "1.1.0"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -1932,6 +1950,25 @@ lint = ["betterproto (==2.0.0b6)", "mypy (==1.15.0)", "pypi-attestations (==0.0.
 test = ["cython (>=3.0)", "defusedxml (>=0.7.1)", "pytest (>=8.0)", "pytest-xdist[psutil] (>=3.4)", "setuptools (>=70.0)", "typing_extensions (>=4.9)"]
 
 [[package]]
+name = "sphinx-autodoc-typehints"
+version = "3.1.0"
+description = "Type hints (PEP 484) support for the Sphinx autodoc extension"
+optional = false
+python-versions = ">=3.11"
+groups = ["dev"]
+files = [
+    {file = "sphinx_autodoc_typehints-3.1.0-py3-none-any.whl", hash = "sha256:67bdee7e27ba943976ce92ebc5647a976a7a08f9f689a826c54617b96a423913"},
+    {file = "sphinx_autodoc_typehints-3.1.0.tar.gz", hash = "sha256:a6b7b0b6df0a380783ce5b29150c2d30352746f027a3e294d37183995d3f23ed"},
+]
+
+[package.dependencies]
+sphinx = ">=8.2"
+
+[package.extras]
+docs = ["furo (>=2024.8.6)"]
+testing = ["covdefaults (>=2.3)", "coverage (>=7.6.12)", "defusedxml (>=0.7.1)", "diff-cover (>=9.2.3)", "pytest (>=8.3.4)", "pytest-cov (>=6)", "sphobjinv (>=2.3.1.2)", "typing-extensions (>=4.12.2)"]
+
+[[package]]
 name = "sphinx-rtd-theme"
 version = "3.0.2"
 description = "Read the Docs theme for Sphinx"
@@ -2199,4 +2236,4 @@ dev = []
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "a7ccb7e71b42e1697e8021a74b234d0de493bd01cab8496e49304d7e0c8bd9ab"
+content-hash = "6931e0373cc0bc2adf2bd5b94e63b988be196bb0b5d3a77c13677bc80b42332f"

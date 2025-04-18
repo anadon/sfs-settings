@@ -18,6 +18,9 @@ nox.options.sessions = [
     "setup_hooks",
     "security",
     "dependencies_scan",
+    "dependencies_scan",
+    "doctest",
+    "doc_coverage",
 ]
 
 # Check if we're running on NixOS
@@ -133,3 +136,21 @@ def dependencies_scan(session: nox.Session) -> None:
     session.run("poetry", "env", "use", session.python, external=True)
     session.run("poetry", "install", external=True)
     session.run("safety", "scan", "--full-report")
+
+
+@nox.session(python=versions[-1])
+def doctest(session: nox.Session) -> None:
+    """Run the doctest suite to ensure examples work."""
+    session.run("poetry", "env", "use", session.python, external=True)
+    session.run("poetry", "install", external=True)
+    session.run("sphinx-build", "-b", "doctest", "docs/source", "docs/build/doctest")
+
+
+@nox.session(python=versions[-1])
+def doc_coverage(session: nox.Session) -> None:
+    """Check documentation coverage."""
+    session.run("poetry", "env", "use", session.python, external=True)
+    session.run("poetry", "install", external=True)
+    session.run("coverage", "run", "--source=sfs_settings", "-m", "pytest")
+    session.run("sphinx-build", "-b", "coverage", "docs/source", "docs/build/coverage")
+    session.run("cat", "docs/build/coverage/python.txt")

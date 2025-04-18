@@ -36,7 +36,7 @@ Application Code
 ----------------
 
 .. code-block:: python
-    :caption: app.py
+    :caption: mod_name/app.py
 
     import config  # This sets up all our environment variables and secrets
     from flask import Flask

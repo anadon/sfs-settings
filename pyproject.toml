@@ -52,6 +52,8 @@ pytest-deduplicate = "^0.1.6"
 bandit = "^1.8.3"
 safety = "^3.3.1"
 keyrings-alt = "^5.0.2"
+pytest-sphinx = "^0.6.3"
+sphinx-autodoc-typehints = "^3.1.0"
 
 [build-system]
 requires = ["poetry-core"]
