@@ -91,7 +91,6 @@ def deduplicate_tests(session: nox.Session) -> None:
     session.run(
         "pytest_deduplicate",
         "--cov=sfs_settings",
-        "--cov-report=term-missing",
         "--cov-branch",
     )
 
