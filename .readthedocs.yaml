@@ -12,7 +12,7 @@ build:
   jobs:
     install:
       - pip install poetry
-      - poetry install --all-groups
+      - poetry install --all-groups --all-extras
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
