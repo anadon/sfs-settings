@@ -12,3 +12,5 @@ htmlcov/
 __pycache__/
 .direnv/
 dist/
+docs/source/_autosummary/
+docs/source/generated/

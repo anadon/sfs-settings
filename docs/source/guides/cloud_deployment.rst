@@ -1,5 +1,10 @@
+.. _cloud_deployment:
+
+Cloud Deployment
+================
+
 Backend Configuration
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 sfs-settings provides a more flexible approach to keyring backend configuration:
 

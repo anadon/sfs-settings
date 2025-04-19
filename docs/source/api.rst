@@ -1,7 +1,9 @@
 API Reference
 =============
 
-.. automodule:: sfs_settings
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. autosummary::
+   :toctree: generated
+   :recursive:
+   :template: custom-module-template.rst
+
+   sfs_settings
