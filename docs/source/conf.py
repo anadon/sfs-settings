@@ -43,7 +43,13 @@ add_module_names = False
 
 # -- Options for HTML output -------------------------------------------------
 html_theme = "sphinx_rtd_theme"
-html_static_path = ["_static"]
+
+# Add this section to handle ambiguous references
+nitpicky = True
+nitpick_ignore = [
+    ("py:class", "typing.Any"),
+    ("py:class", "Any"),
+]
 
 # -- Napoleon settings for docstring formatting ------------------------------
 napoleon_google_docstring = False
