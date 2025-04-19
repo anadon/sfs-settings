@@ -13,6 +13,7 @@ build:
     install:
       - pip install poetry
       - poetry install --all-groups --all-extras
+      - eval $(poetry env activate)
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
