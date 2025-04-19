@@ -2,7 +2,6 @@ API Reference
 =============
 
 .. autosummary::
-   :no-index:
    :toctree: generated
    :recursive:
    :template: custom-module-template.rst
@@ -10,6 +9,5 @@ API Reference
    sfs_settings
 
 .. automodule:: sfs_settings
-   :no-index:
    :members:
    :show-inheritance:
