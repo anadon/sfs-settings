@@ -7,7 +7,3 @@ API Reference
    :template: custom-module-template.rst
 
    sfs_settings
-
-.. automodule:: sfs_settings
-   :members:
-   :show-inheritance:
