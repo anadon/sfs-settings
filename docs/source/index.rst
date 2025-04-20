@@ -2,11 +2,11 @@ Welcome to sfs-settings, the last settings module you'll ever need!
 ===================================================================
 
 .. image:: https://codecov.io/gh/anadon/sfs-settings/graph/badge.svg?token=IV01K5MBAE&v=1
-   :target: https://codecov.io/gh/anadon/sfs-settings
+   :target: https://app.codecov.io/gh/anadon/sfs-settings
    :alt: Codecov
 
 .. image:: https://www.bestpractices.dev/projects/10423/badge?cache_seconds=0
-   :target: https://www.bestpractices.dev/projects/10423
+   :target: https://www.bestpractices.dev/en/projects/10423
 
 
 Three ways to use your settings, guaranteed to work the way you've always *just* wanted!
@@ -125,7 +125,7 @@ integrate with other modules which do the same.  Here are some of the integratio
 macOS Keychain, and GNOME Keyring, is supported by this module.  However, not all backends are supported out
 of the box, particularly for cloud deployments.  If you need support for additional backends, more can be
 found at `the keyring pypi page <https://pypi.org/project/keyring/>`_.  For examples on how to use these
-additionaal backends, please review the `backend configuration guide <guides/deployment.html>`_.
+additionaal backends, please review the :doc:`cloud deployment guide <guides/cloud_deployment>`.
 
 ``.env`` support
 ~~~~~~~~~~~~~~~~
@@ -135,7 +135,7 @@ additionaal backends, please review the `backend configuration guide <guides/dep
 Developing
 ----------
 
-`sfs-settings` uses `poetry <https://python-poetry.org/>`_ for dependency management and building.  It also comes with files to support development with `Nix Flakes <https://nixos.org/manual/nix/stable/flakes.html>`_ and `Direnv <https://direnv.net/>`_.
+`sfs-settings` uses `poetry <https://python-poetry.org/>`_ for dependency management and building.  It also comes with files to support development with `Nix Flakes <https://nixos.wiki/wiki/Flakes>`_ and `Direnv <https://direnv.net/>`_.
 
 Build
 ~~~~~
@@ -193,7 +193,7 @@ Looking for something with more nuance than 'halt everything'?  We've got you co
 License
 -------
 
-`MIT <LICENSE>`
+`MIT <https://github.com/anadon/sfs-settings/blob/main/LICENSE>`_
 
 Contributing, bug reports, and support
 --------------------------------------
@@ -202,4 +202,4 @@ The jist is that you should use the github issue tracker to report bugs and feat
 
 All PRs must be signed and maintain 100% test coverage.
 
-Please see `the Code of Conduct <CODE_OF_CONDUCT.rst>` and `the Contributing requirements <CONTRIBUTING.rst>` for more information.
+Please see `the Code of Conduct <https://github.com/anadon/sfs-settings/blob/main/CODE_OF_CONDUCT.rst>`_ and `the Contributing requirements <https://github.com/anadon/sfs-settings/blob/main/CONTRIBUTING.rst>`_ for more information.

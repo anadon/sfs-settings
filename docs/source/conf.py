@@ -20,6 +20,21 @@ author = "Josh Marshall"
 version = sfs_settings.__version__
 release = sfs_settings.__version__
 
+html_context = {
+    "display_github": True,
+    "github_user": "anadon",
+    "github_repo": "sfs-settings",
+    "github_version": "main",
+    "conf_py_path": "/docs/source/",
+    "copyright": "2025, Josh Marshall",
+    "doc_path": "/docs/source/",
+    "source_suffix": ".rst",
+    "html_theme": "sphinx_rtd_theme",
+    "html_theme_options": {
+        "navigation_depth": 4,
+    },
+}
+
 # -- General configuration ---------------------------------------------------
 extensions = [
     "sphinx.ext.autodoc",
@@ -38,6 +53,10 @@ extensions = [
 templates_path = ["_templates"]
 exclude_patterns = ["tests"]
 
+suppress_warnings = [
+    "toc.not_included",
+]
+
 # Add this to prevent duplicate warnings
 add_module_names = False
 
@@ -46,10 +65,12 @@ html_theme = "sphinx_rtd_theme"
 
 # Add this section to handle ambiguous references
 nitpicky = True
-nitpick_ignore = [
-    ("py:class", "typing.Any"),
-    ("py:class", "Any"),
-]
+
+typing_aliases = {
+    "Any": "typing.Any",
+    "optional": "typing.Optional",
+    "callable": "typing.Callable",
+}
 
 # -- Napoleon settings for docstring formatting ------------------------------
 napoleon_google_docstring = False
@@ -68,8 +89,8 @@ napoleon_type_aliases = None
 napoleon_attr_annotations = True
 
 # Configure autosummary
-autosummary_generate = True
-autosummary_imported_members = True
+autosummary_generate = False
+autosummary_imported_members = False
 
 source_suffix = {
     ".rst": "restructuredtext",
@@ -101,12 +122,10 @@ autodoc_default_flags = ["private-members"]
 # Better typehints display
 autodoc_typehints = "description"
 autodoc_typehints_format = "fully-qualified"
+python_use_unqualified_type_names = False
 
 # Set up todo extension
 todo_include_todos = True
-
-# Don't show type hints in function signatures
-python_use_unqualified_type_names = True
 
 
 # The complex return type causes issue with mypy.
@@ -167,3 +186,18 @@ pygments_dark_style = "monokai"
 
 # Set up code block defaults
 highlight_language = "python3"
+
+# -- Options for linkcheck builder -----------------------------------------
+linkcheck_ignore = [
+    # Add regex patterns for URLs to ignore
+    r"http://localhost.*",
+]
+
+linkcheck_allowed_redirects: dict[str, str] = {
+    # Map from URL pattern to allowed redirect URL pattern
+    # 'https://old.example.com/': 'https://new.example.com/',
+}
+
+linkcheck_timeout = 15  # seconds
+linkcheck_workers = 5  # parallel requests
+linkcheck_retries = 3  # retry count for 429 Too Many Requests

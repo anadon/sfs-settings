@@ -46,7 +46,7 @@ sfs-settings offers three distinct patterns for different use cases:
 Under the Hood
 --------------
 
-Internally, sfs-settings uses stack introspection to determine the calling module and modify its namespace. This is how variables can "magically" appear in your module.  If you want to know about these mechanics, see the `source code <https://github.com/anadon/sfs-settings/blob/main/sfs_settings>`_.
+Internally, sfs-settings uses stack introspection to determine the calling module and modify its namespace. This is how variables can "magically" appear in your module.  If you want to know about these mechanics, see the `source code <https://github.com/anadon/sfs-settings/tree/main/sfs_settings>`_.
 
 Each setting can be configured to be:
 
