@@ -1,5 +1,5 @@
-Web Application Example
-=======================
+Flask Example
+=============
 
 This example shows how to use sfs-settings in a Flask web application.
 

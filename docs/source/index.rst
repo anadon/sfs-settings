@@ -17,31 +17,6 @@ Three ways to use your settings, guaranteed to work the way you've always *just*
 
 Code can be found `here <https://github.com/anadon/sfs-settings>`_.
 
-Indices and tables
-==================
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Contents:
-
-   quickstart
-   api
-   guides/fastapi
-   guides/flask
-   guides/cloud_deployment
-   guides/environment_variables
-   concepts/security
-   concepts/design
-
-Requirements
-------------
-
-* Python 3.11+
-* Poetry 1.9+
-* Pydantic 2.0+
-* keyring = "^25.0.0"
-* dotenv = "^0.9.0"
-
 How to use
 ----------
 
@@ -189,6 +164,33 @@ When it lands, you'll be able to do something like this:
 Just remember that these will **ONLY** work for settings which have ``reobtain_each_usage=True``!
 
 Looking for something with more nuance than 'halt everything'?  We've got you covered!  See the specific for transactional locks documentation for more details.
+
+
+Additional guides and documentation
+-----------------------------------
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   quickstart
+   api
+   guides/fastapi
+   guides/flask
+   guides/cloud_deployment
+   guides/environment_variables
+   concepts/security
+   concepts/design
+
+
+Requirements
+------------
+
+* Python 3.11+
+* Poetry 1.9+
+* Pydantic 2.0+
+* keyring = "^25.0.0"
+* dotenv = "^0.9.0"
 
 License
 -------

@@ -1,5 +1,5 @@
-Web Application Example
-=======================
+FastAPI Example
+===============
 
 FastAPI projects often require alternative configurations for a number of different environments.  Here is
 outlined how sfs-settings provides a more consistent pattern for setting the application's various
