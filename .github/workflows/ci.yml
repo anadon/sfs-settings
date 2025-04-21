@@ -34,7 +34,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Run tests
-        run: poetry run pytest --cov --junitxml=junit.xml -o junit_family=legacy
+        run: poetry run pytest --cov=sfs_settings --cov-branch --junitxml=junit.xml -o junit_family=legacy
 
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
