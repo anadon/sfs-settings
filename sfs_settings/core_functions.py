@@ -148,14 +148,14 @@ def track_env_var(
     ----------
     env_var_name : str
         Name of an environmental variable to obtain the value of.
-    default : str or None, optional
+    default : str or None, Optional
         If not None, a default value to use if the environmental value specified by env_var_name is not set.
-    validator_function : callable, optional
+    validator_function : Callable[[Any], bool], Optional
         An additional validation function to accept or reject the obtained value.
-    reobtain_each_usage : bool, optional
+    reobtain_each_usage : bool, Optional
         If true, on each access reobtain the value. If not, it is only obtained once when this function is
         called.
-    conversion_function : callable or type, optional
+    conversion_function : Callable[[str], Any] or type, Optional
         A function or type that converts the obtained value to the desired type.
 
     Returns
@@ -215,16 +215,16 @@ def track_secret_var(
         The name of the secret store to get the secret from.
     name_in_store : str
         The name of the secret in the secret store.
-    default : str or None, optional
+    default : str or None, Optional
         The default value to use if the secret is not set.
-    validator_function : callable, optional
+    validator_function : Callable[[Any], bool], Optional
         An auxiliary function that validates the value according to user specified criteria.
-    reobtain_each_usage : bool, optional
+    reobtain_each_usage : bool, Optional
         If True, the value will be reobtained each time it is used. If False, the value will be
         obtained once and then reused. Set to True if the value changes during runtime and the
         program needs the updated value in order to operate correctly. For security reasons,
         it is recommended to set this to True.
-    conversion_function : callable or type, optional
+    conversion_function : Callable[[str], Any] or type, Optional
         An auxiliary function that converts the value from a string to the desired type.
         Use this for complex or nested types.
 
@@ -263,16 +263,16 @@ def set_env_var_locally(
     ----------
     name : str
         The name of the environment variable to get and set.
-    default : str or None, optional
+    default : str or None, Optional
         The default value to use if the environment variable is not set.
-    validator_function : callable, optional
+    validator_function : Callable[[Any], bool], Optional
         An auxiliary function that validates the value according to user specified criteria.
-    reobtain_each_usage : bool, optional
+    reobtain_each_usage : bool, Optional
         If True, the value will be reobtained each time it is used. If False, the value will be
         obtained once and then reused. Set to True if the value changes during runtime and the
         program needs the updated value in order to operate correctly. For security reasons,
         it is recommended to set this to True.
-    conversion_function : callable or type, optional
+    conversion_function : Callable[[str], Any] or type, Optional
         An auxiliary function that converts the value from a string to the desired type.
         Use this for complex or nested types.
 
@@ -333,16 +333,16 @@ def set_secret_var_locally(
         The name of the secret store to get the secret from.
     name_in_store : str
         The name of the secret in the secret store.
-    default : str or None, optional
+    default : str or None, Optional
         The default value to use if the secret is not set.
-    validator_function : callable, optional
+    validator_function : Callable[[Any], bool], Optional
         An auxiliary function that validates the value according to user specified criteria.
-    reobtain_each_usage : bool, optional
+    reobtain_each_usage : bool, Optional
         If True, the value will be reobtained each time it is used. If False, the value will be
         obtained once and then reused. Set to True if the value changes during runtime and the
         program needs the updated value in order to operate correctly. For security reasons,
         it is recommended to set this to True.
-    conversion_function : callable or type, optional
+    conversion_function : Callable[[str], Any] or type, Optional
         An auxiliary function that converts the value from a string to the desired type.
         Use this for complex or nested types.
 
@@ -380,15 +380,15 @@ def return_env_var(
     ----------
     env_var_name : str
         The name of the environment variable to get.
-    default : str or None, optional
+    default : str or None, Optional
         The default value to use if the environment variable is not set.
-    validator_function : callable, optional
+    validator_function : Callable[[Any], bool], Optional
         An auxiliary function that validates the value according to user specified criteria.
-    reobtain_each_usage : bool, optional
+    reobtain_each_usage : bool, Optional
         If True, the value will be reobtained each time it is used. If False, the value will be
         obtained once and then reused. Set to True if the value changes during runtime and the
         program needs the updated value in order to operate correctly.
-    conversion_function : callable or type, optional
+    conversion_function : Callable[[str], Any] or type, Optional
         An auxiliary function that converts the value from a string to the desired type.
         Use this for complex or nested types.
 
@@ -444,16 +444,16 @@ def return_secret_var(
         The name of the secret store to get the secret from.
     name_in_store : str
         The name of the secret in the secret store.
-    default : str or None, optional
+    default : str or None, Optional
         The default value to use if the secret is not set.
-    validator_function : callable, optional
+    validator_function : Callable[[Any], bool], Optional
         An auxiliary function that validates the value according to user specified criteria.
-    reobtain_each_usage : bool, optional
+    reobtain_each_usage : bool, Optional
         If True, the value will be reobtained each time it is used. If False, the value will be
         obtained once and then reused. Set to True if the value changes during runtime and the
         program needs the updated value in order to operate correctly. For security reasons,
         it is recommended to set this to True.
-    conversion_function : callable or type, optional
+    conversion_function : Callable[[str], Any] or type, Optional
         An auxiliary function that converts the value from a string to the desired type.
         Use this for complex or nested types.
 

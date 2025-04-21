@@ -70,7 +70,7 @@ __all__ = [
     "track_secret_var",
 ]
 
-__version__ = "0.9.0"
+__version__ = "0.9.1"
 
 # This loads values from a .env file into the os.environ
 load_dotenv()

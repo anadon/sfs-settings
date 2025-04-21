@@ -8,7 +8,6 @@ Welcome to sfs-settings, the last settings module you'll ever need!
 .. image:: https://www.bestpractices.dev/projects/10423/badge?cache_seconds=0
    :target: https://www.bestpractices.dev/projects/10423
 
-
 Three ways to use your settings, guaranteed to work the way you've always *just* wanted!
 
 * Simply set and get in sfs-settings itself
@@ -30,7 +29,7 @@ How to use
 ----------
 
 Set and get in sfs-settings itself
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -114,7 +113,7 @@ It's kinda complicated inside ``sfs-settings`` actually.  So when if you're usin
 No downtime to atomically change settings?  Transaction locks incoming!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-While not here yet, ``sfs-settings`` **will** support transation locks so that you don't need to stop your container or VM in order to guarantee correct settings at all times.  So, how do you feel about sub-millisecond not even downtime, but pauses?  We think that they're just swell!
+While not here yet, ``sfs-settings`` **will** support transaction locks so that you don't need to stop your container or VM in order to guarantee correct settings at all times.  So, how do you feel about sub-millisecond not even downtime, but pauses?  We think that they're just swell!
 
 When it lands, you'll be able to do something like this:
 
@@ -128,6 +127,30 @@ When it lands, you'll be able to do something like this:
 Just remember that these will **ONLY** work for settings which have ``reobtain_each_usage=True``!
 
 Looking for something with more nuance than 'halt everything'?  We've got you covered!  See the specific for transactional locks documentation for more details.
+
+Integrations
+------------
+
+`sfs-settings` does its best to promote 12-factor app principles.  This means that it does its best to
+integrate with other modules which do the same.  Here are some of the integrations it supports:
+
+`keyring` backends
+~~~~~~~~~~~~~~~~~~
+
+`keyring`, the python module for integrating with system password managers like Windows Credential Manager,
+macOS Keychain, and GNOME Keyring, is supported by this module.  However, not all backends are supported out
+of the box, particularly for cloud deployments.  If you need support for additional backends, more can be
+found at `the keyring pypi page <https://pypi.org/project/keyring/>`.  For examples on how to use these
+additional backends, please review the `backend configuration guide <https://sfs-settings.readthedocs.io/en/latest/guides/deployment.html>`_.
+
+
+`.env` support
+~~~~~~~~~~~~~~
+
+`sfs-settings` supports `.env` files!  It automatically loads them from the current working directory.
+If you need to have easy swapping between development, local, testing, cloud, and other configurations then
+swapping `.env` files is a great way to do it.  Examples of how to use `.env` files can be found in the
+`environment variables guide <https://sfs-settings.readthedocs.io/en/latest/guides/environment_variables.html>`_.
 
 Build
 -----

@@ -45,30 +45,3 @@ sfs-settings automatically loads variables from .env files in the current direct
     DATABASE_URL=postgres://user:pass@localhost/db
     DEBUG=true
     PORT=5000
-
-Different environments can have different .env files:
-
-.. code-block:: bash
-    :caption: .env.development
-
-    DATABASE_URL=postgres://user:pass@localhost/dev_db
-    DEBUG=true
-
-.. code-block:: bash
-    :caption: .env.production
-
-    DATABASE_URL=postgres://user:pass@prod-server/prod_db
-    DEBUG=false
-
-Loading specific environments:
-
-.. code-block:: python
-    :caption: Loading specific environments
-
-    import os
-    from dotenv import load_dotenv
-
-    # Before importing sfs_settings
-    load_dotenv(f".env.{os.environ.get('ENVIRONMENT', 'development')}")
-
-    from sfs_settings import set_env_var_locally

@@ -1424,6 +1424,24 @@ coverage = "*"
 pytest = "*"
 
 [[package]]
+name = "pytest-sphinx"
+version = "0.6.3"
+description = "Doctest plugin for pytest with support for Sphinx-specific doctest-directives"
+optional = false
+python-versions = ">=3.8"
+groups = ["dev"]
+files = [
+    {file = "pytest_sphinx-0.6.3-py3-none-any.whl", hash = "sha256:856e760e64dfbfc89e362e187d641140a267b97881d3ef8aeefb72cc8438ac40"},
+    {file = "pytest_sphinx-0.6.3.tar.gz", hash = "sha256:3b63c8181b9de6a5e5c9826d1b4dc0c827245bec8e64c9f16f269be08be5ecd5"},
+]
+
+[package.dependencies]
+pytest = ">=8.1.1"
+
+[package.extras]
+lint = ["black", "flake8", "isort (>=5)", "mypy"]
+
+[[package]]
 name = "python-dotenv"
 version = "1.1.0"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -1851,15 +1869,30 @@ cryptography = ">=2.0"
 jeepney = ">=0.6"
 
 [[package]]
+name = "security"
+version = "1.3.1"
+description = "The security toolkit for the Python community"
+optional = false
+python-versions = ">=3.8"
+groups = ["dev"]
+files = [
+    {file = "security-1.3.1-py3-none-any.whl", hash = "sha256:9df6e75393f494ca3fd06dac3ed02f3c4fed60842b13fd00757b026cedff426b"},
+    {file = "security-1.3.1.tar.gz", hash = "sha256:7ec0853c74c7dd22a9967bda087db5d4a7df58253574e60ec475c660f839da6d"},
+]
+
+[package.dependencies]
+requests = "*"
+
+[[package]]
 name = "setuptools"
-version = "78.1.0"
+version = "79.0.0"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "setuptools-78.1.0-py3-none-any.whl", hash = "sha256:3e386e96793c8702ae83d17b853fb93d3e09ef82ec62722e61da5cd22376dcd8"},
-    {file = "setuptools-78.1.0.tar.gz", hash = "sha256:18fd474d4a82a5f83dac888df697af65afa82dec7323d09c3e37d1f14288da54"},
+    {file = "setuptools-79.0.0-py3-none-any.whl", hash = "sha256:b9ab3a104bedb292323f53797b00864e10e434a3ab3906813a7169e4745b912a"},
+    {file = "setuptools-79.0.0.tar.gz", hash = "sha256:9828422e7541213b0aacb6e10bbf9dd8febeaa45a48570e09b6d100e063fc9f9"},
 ]
 
 [package.extras]
@@ -1930,6 +1963,25 @@ sphinxcontrib-serializinghtml = ">=1.1.9"
 docs = ["sphinxcontrib-websupport"]
 lint = ["betterproto (==2.0.0b6)", "mypy (==1.15.0)", "pypi-attestations (==0.0.21)", "pyright (==1.1.395)", "pytest (>=8.0)", "ruff (==0.9.9)", "sphinx-lint (>=0.9)", "types-Pillow (==10.2.0.20240822)", "types-Pygments (==2.19.0.20250219)", "types-colorama (==0.4.15.20240311)", "types-defusedxml (==0.7.0.20240218)", "types-docutils (==0.21.0.20241128)", "types-requests (==2.32.0.20241016)", "types-urllib3 (==1.26.25.14)"]
 test = ["cython (>=3.0)", "defusedxml (>=0.7.1)", "pytest (>=8.0)", "pytest-xdist[psutil] (>=3.4)", "setuptools (>=70.0)", "typing_extensions (>=4.9)"]
+
+[[package]]
+name = "sphinx-autodoc-typehints"
+version = "3.1.0"
+description = "Type hints (PEP 484) support for the Sphinx autodoc extension"
+optional = false
+python-versions = ">=3.11"
+groups = ["dev"]
+files = [
+    {file = "sphinx_autodoc_typehints-3.1.0-py3-none-any.whl", hash = "sha256:67bdee7e27ba943976ce92ebc5647a976a7a08f9f689a826c54617b96a423913"},
+    {file = "sphinx_autodoc_typehints-3.1.0.tar.gz", hash = "sha256:a6b7b0b6df0a380783ce5b29150c2d30352746f027a3e294d37183995d3f23ed"},
+]
+
+[package.dependencies]
+sphinx = ">=8.2"
+
+[package.extras]
+docs = ["furo (>=2024.8.6)"]
+testing = ["covdefaults (>=2.3)", "coverage (>=7.6.12)", "defusedxml (>=0.7.1)", "diff-cover (>=9.2.3)", "pytest (>=8.3.4)", "pytest-cov (>=6)", "sphobjinv (>=2.3.1.2)", "typing-extensions (>=4.12.2)"]
 
 [[package]]
 name = "sphinx-rtd-theme"
@@ -2199,4 +2251,4 @@ dev = []
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "a7ccb7e71b42e1697e8021a74b234d0de493bd01cab8496e49304d7e0c8bd9ab"
+content-hash = "8c3e610a25bb4d8ab85749b0d0bb3a02d133b0e4405dd79f7b443c9a695c11bf"
