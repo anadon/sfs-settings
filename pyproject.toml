@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sfs-settings"
-version = "0.9.3"
+version = "0.9.4"
 description = "Simple, flexible, and secure settings management for Python."
 authors = ["Anadon <joshua.r.marshall.1991@gmail.com>"]
 readme = "README.rst"
