@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+import subprocess
 from collections.abc import Callable
 from typing import TYPE_CHECKING, Any, Literal
 
@@ -181,6 +183,27 @@ def process_pseudo_variable(
         )
 
 
+def get_git_branch() -> str:
+    """Get the current git branch name from either git command or environment variables."""
+    # First check if we're on ReadTheDocs
+    if os.environ.get("READTHEDOCS") == "True":
+        return os.environ.get("READTHEDOCS_VERSION", "latest")
+
+    # Otherwise try to get from Git
+    try:
+        return (
+            subprocess.check_output(  # noqa: S603
+                ["git", "rev-parse", "--abbrev-ref", "HEAD"],  # noqa: S607
+                stderr=subprocess.DEVNULL,
+            )
+            .decode("utf-8")
+            .strip()
+        )
+    except (subprocess.SubprocessError, FileNotFoundError):
+        # Default if we can't get the branch
+        return "main"  # or your default branch name
+
+
 pygments_style = "sphinx"
 pygments_dark_style = "monokai"
 
@@ -201,3 +224,8 @@ linkcheck_allowed_redirects: dict[str, str] = {
 linkcheck_timeout = 15  # seconds
 linkcheck_workers = 5  # parallel requests
 linkcheck_retries = 3  # retry count for 429 Too Many Requests
+
+# Define the substitution for use in RST files
+rst_epilog = f"""
+.. |branch| replace:: {get_git_branch()}
+"""

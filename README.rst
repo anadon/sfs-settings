@@ -1,7 +1,7 @@
 Welcome to sfs-settings, the last settings module you'll ever need!
 ======================================================================
 
-.. image:: https://codecov.io/gh/anadon/sfs-settings/graph/badge.svg?token=IV01K5MBAE
+.. image:: https://codecov.io/gh/anadon/sfs-settings/branch/HEAD/graph/badge.svg?token=IV01K5MBAE
    :target: https://codecov.io/gh/anadon/sfs-settings
    :alt: Codecov
 
@@ -114,7 +114,7 @@ It's kinda complicated inside ``sfs-settings`` actually.  So when if you're usin
 No downtime to atomically change settings?  Transaction locks incoming!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-While not here yet, ``sfs-settings`` **will** support transation locks so that you don't need to stop your container or VM in order to guarantee correct settings at all times.  So, how do you feel about sub-millisecond not even downtime, but pauses?  We think that they're just swell!
+While not here yet, ``sfs-settings`` **will** support transaction locks so that you don't need to stop your container or VM in order to guarantee correct settings at all times.  So, how do you feel about sub-millisecond not even downtime, but pauses?  We think that they're just swell!
 
 When it lands, you'll be able to do something like this:
 
@@ -142,7 +142,7 @@ integrate with other modules which do the same.  Here are some of the integratio
 macOS Keychain, and GNOME Keyring, is supported by this module.  However, not all backends are supported out
 of the box, particularly for cloud deployments.  If you need support for additional backends, more can be
 found at `the keyring pypi page <https://pypi.org/project/keyring/>`.  For examples on how to use these
-additionaal backends, please review the `backend configuration guide <https://sfs-settings.readthedocs.io/en/latest/guides/deployment.html>`_.
+additional backends, please review the `backend configuration guide <https://sfs-settings.readthedocs.io/en/latest/guides/deployment.html>`_.
 
 
 `.env` support
