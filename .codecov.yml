@@ -5,3 +5,5 @@ codecov:
   notify:
     after_n_builds: 2
     wait_for_ci: yes
+ignore:
+  - "test_*.py"
