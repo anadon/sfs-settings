@@ -54,8 +54,8 @@ def lint(session: nox.Session) -> None:
 
     # For NixOS, we need to use Python module directly instead of the binary
     if is_nixos:
-        session.run("python", "-m", "ruff", "check", "sfs_settings", external=True)
-        session.run("python", "-m", "ruff", "format", "--check", "sfs_settings", external=True)
+        session.run("nix", "run", "nixpkgs#ruff", "--", "check", "sfs_settings", external=True)
+        session.run("nix", "run", "nixpkgs#ruff", "--", "format", "--check", "sfs_settings", external=True)
     else:
         session.run("poetry", "run", "ruff", "check", "sfs_settings", external=True)
         session.run("poetry", "run", "ruff", "format", "--check", "sfs_settings", external=True)
