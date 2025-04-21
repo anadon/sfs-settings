@@ -1,11 +1,11 @@
 Welcome to sfs-settings, the last settings module you'll ever need!
 ======================================================================
 
-.. image:: https://codecov.io/gh/anadon/sfs-settings/branch/HEAD/graph/badge.svg?token=IV01K5MBAE
+.. image:: https://codecov.io/gh/anadon/sfs-settings/branch/HEAD/graph/badge.svg?token=IV01K5MBAE&v=2
    :target: https://codecov.io/gh/anadon/sfs-settings
    :alt: Codecov
 
-.. image:: https://www.bestpractices.dev/projects/10423/badge
+.. image:: https://www.bestpractices.dev/projects/10423/badge?cache_seconds=0
    :target: https://www.bestpractices.dev/projects/10423
 
 
