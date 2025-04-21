@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "sfs-settings"
-version = "0.9.1"
+version = "0.9.4"
 description = "Simple, flexible, and secure settings management for Python."
 authors = ["Anadon <joshua.r.marshall.1991@gmail.com>"]
 readme = "README.rst"
-license = "CC"
+license = "MIT"
 repository = "https://github.com/anadon/sfs-settings"
 keywords = ["settings", "configuration", "environment", "secrets"]
 classifiers = [
